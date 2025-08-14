@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Anoma Aesthetic Design System 
+This file defines the Anoma aesthetic with strict color palette and typography.
+*/
+
+@layer base {
+  :root {
+    /* Anoma Color Palette - Non-negotiable for authentic feel */
+    --background: 0 0% 0%; /* Near-absolute black */
+    --foreground: 0 0% 100%; /* White text */
+
+    /* Card colors - minimal and floating */
+    --card: 0 0% 0%; /* Transparent/black */
+    --card-foreground: 0 0% 100%;
+
+    /* Popover colors */
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Anoma brand colors */
+    --primary: 0 100% 62%; /* Anoma Red #FF4D4D */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 0 100% 62%;
+
+    /* Secondary accent - Lime */
+    --secondary: 72 100% 50%; /* Anoma Lime #DFFF00 */
+    --secondary-foreground: 0 0% 0%;
+
+    /* Muted colors for subtle elements */
+    --muted: 0 0% 20%; /* Dark gray */
+    --muted-foreground: 0 0% 60%;
+
+    /* Accent colors */
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Error/destructive colors */
+    --destructive: 0 100% 62%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border and input colors */
+    --border: 0 0% 20%; /* Subtle dark gray */
+    --input: 0 0% 20%;
+    --ring: 0 100% 62%;
+
+    /* Gradients for beautiful effects */
+    --gradient-primary: linear-gradient(135deg, #FF4D4D, #FF6B6B);
+    --gradient-card: linear-gradient(145deg, #000000, #1a1a1a);
+    --gradient-glow: radial-gradient(circle at center, rgba(255, 77, 77, 0.2), transparent 70%);
+
+    /* Shadows with brand color */
+    --shadow-glow: 0 0 40px rgba(255, 77, 77, 0.3);
+    --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+
+    /* Animation timing */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0; /* No rounded corners for Anoma aesthetic */
+
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 20%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 100% 62%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 100% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 72 100% 50%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 100% 62%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 20%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 100% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-anoma-black text-anoma-white font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Anoma Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* Anoma Button Styles */
+  .btn-anoma-primary {
+    @apply bg-anoma-lime text-anoma-black font-mono uppercase rounded-none px-6 py-3 border-0;
+  }
+
+  .btn-anoma-secondary {
+    @apply bg-transparent text-anoma-white border border-anoma-white font-mono uppercase rounded-none px-6 py-3 hover:bg-anoma-white hover:text-anoma-black transition-colors;
+  }
+
+  /* Anoma Background Grid */
+  .bg-anoma-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+}
