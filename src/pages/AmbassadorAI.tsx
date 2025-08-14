@@ -114,13 +114,13 @@ export default function AmbassadorAI() {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-4 mb-6 py-[18px]">
-              <img 
-                src="/anoma-logo.jpg" 
-                alt="Anoma Logo" 
-                className="w-16 h-16 object-cover rounded-none border-2 border-anoma-gray"
-              />
-              <h1 className="text-6xl font-mono font-bold text-anoma-white uppercase tracking-wider">
-                XION AMBASSADOR AI
+                               <img 
+                   src="/anoma-logo-new.jpg" 
+                   alt="ASJ AI Avatar" 
+                   className="w-16 h-16 object-cover rounded-none border-2 border-anoma-gray"
+                 />
+                                     <h1 className="text-6xl font-mono font-bold text-anoma-white uppercase tracking-wider">
+                         ASJ AI
               </h1>
             </div>
             <p className="text-xl text-anoma-white/80 max-w-4xl mx-auto font-sans">

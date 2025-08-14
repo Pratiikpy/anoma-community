@@ -61,7 +61,13 @@ const Index = () => {
               className={currentView === "ambassador" ? "btn-anoma-primary" : "btn-anoma-secondary"}
               onClick={() => setCurrentView("ambassador")}
             >
-              AMBASSADOR AI
+              ASJ AI
+            </Button>
+            <Button 
+              className="btn-anoma-secondary"
+              onClick={() => window.open('/anoma-info', '_blank')}
+            >
+              ANOMA INFO
             </Button>
             <Button 
               className={currentView === "submit" ? "btn-anoma-primary" : "btn-anoma-secondary"}

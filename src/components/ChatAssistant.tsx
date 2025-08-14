@@ -173,14 +173,14 @@ export default function ChatAssistant() {
             {/* Chat header */}
             <div className="flex justify-between items-center p-4 border-b border-anoma-gray bg-anoma-red">
               <div className="flex items-center gap-3">
-                <img 
-                  src="/anoma-logo.jpg" 
-                  alt="Anoma Logo" 
-                  className="w-8 h-8 object-cover rounded-none border border-anoma-white"
-                />
+                                 <img 
+                   src="/anoma-logo-new.jpg" 
+                   alt="ASJ AI Avatar" 
+                   className="w-8 h-8 object-cover rounded-none border border-anoma-white"
+                 />
                 <div>
-                  <h3 className="font-mono font-semibold text-anoma-white uppercase tracking-wide">AMBASSADOR AI</h3>
-                  <p className="text-xs text-anoma-white/80 font-sans">Your Xion Ambassador guide</p>
+                                             <h3 className="font-mono font-semibold text-anoma-white uppercase tracking-wide">ASJ AI</h3>
+                           <p className="text-xs text-anoma-white/80 font-sans">Your Anoma Community guide</p>
                 </div>
               </div>
               <Button size="sm" className="text-anoma-white hover:bg-anoma-white/20 rounded-none" onClick={() => setIsExpanded(false)}>
