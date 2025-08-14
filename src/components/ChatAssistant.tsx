@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Card, CardContent } from "./ui/card";
+import { GeminiService } from "@/lib/gemini";
 
 // Interface for chat messages
 interface ChatMessage {
@@ -55,7 +56,7 @@ export default function ChatAssistant() {
   // State for managing chat messages
   const [messages, setMessages] = useState<ChatMessage[]>([{
     id: "welcome",
-    content: "Hi! I'm your Xion Ambassador AI assistant. Ask me anything about the Ambassador Program, content creation, upcoming events, or how to get involved!",
+    content: "Hi! I'm ASJ AI, your Anoma Community AI assistant. Ask me anything about Anoma Network, blockchain technology, community topics, or how to get involved! I'm powered by Google's Gemini AI to provide you with the most accurate and helpful information.",
     role: "assistant",
     timestamp: new Date()
   }]);
@@ -79,31 +80,16 @@ export default function ChatAssistant() {
     });
   }, [messages]);
 
-  // Function to simulate AI response (in real app, this calls your AI API)
+  // Function to generate AI response using Gemini API
   const generateAIResponse = async (userMessage: string): Promise<string> => {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Simple keyword-based responses (in real app, use OpenAI/Claude API)
-    const lowerMessage = userMessage.toLowerCase();
-    if (lowerMessage.includes("ambassador") || lowerMessage.includes("program")) {
-      return "The Xion Ambassador Program empowers community leaders to create content and spread awareness! Benefits include early access to features, exclusive NFTs, monthly meetups, and direct team communication. Ready to apply?";
+    try {
+      // Use Gemini API to generate response
+      const response = await GeminiService.chat(userMessage);
+      return response;
+    } catch (error) {
+      console.error('Failed to generate AI response:', error);
+      return "I apologize, but I'm having trouble connecting to my AI service right now. Please try again in a moment, or feel free to ask me about Anoma Network, blockchain technology, or community topics!";
     }
-    if (lowerMessage.includes("content") || lowerMessage.includes("create")) {
-      return "Popular content types include educational threads about account abstraction, video tutorials, infographics about gasless transactions, and developer guides. We provide templates, graphics assets, and technical resources to help you create amazing content!";
-    }
-    if (lowerMessage.includes("event") || lowerMessage.includes("meetup")) {
-      return "Upcoming events include: Monthly Ambassador Meetups (last Friday), Xion DevCon 2024 (Q2), ongoing Community Content Contest, and weekly Ambassador Spotlight Series. Join our Discord for the latest updates!";
-    }
-    if (lowerMessage.includes("getting started") || lowerMessage.includes("how to")) {
-      return "To become a Xion Ambassador: 1) Join our Discord community, 2) Start creating Xion-related content, 3) Engage with the community, 4) Apply through our ambassador portal. We're looking for passionate creators and community builders!";
-    }
-    if (lowerMessage.includes("account abstraction") || lowerMessage.includes("gasless")) {
-      return "Great topic for ambassador content! Account abstraction means users don't manage private keys, and gasless transactions remove token requirements. These are perfect subjects for educational threads and videos!";
-    }
-
-    // Default response
-    return `Thanks for your question about "${userMessage}". As your Ambassador AI, I can help with program details, content creation tips, upcoming events, and community opportunities. What would you like to explore?`;
   };
 
   // Handle sending a message

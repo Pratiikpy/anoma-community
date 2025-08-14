@@ -34,7 +34,7 @@ export default function AmbassadorAI() {
   const messages: Message[] = geminiMessages.length === 0 ? [{
     id: "1",
     type: "ai",
-    content: "Hello! I'm the Xion Ambassador AI. I can help you learn about Xion programs, discover content opportunities, get recommendations, and stay updated on community events. What would you like to know?",
+    content: "Hello! I'm ASJ AI, your Anoma Community AI assistant. I can help you learn about Anoma Network, blockchain technology, community topics, and much more. I'm powered by Google's Gemini AI to provide you with the most accurate and helpful information. What would you like to know?",
     timestamp: new Date(),
     category: "program"
   }] : geminiMessages.map(msg => ({
@@ -84,16 +84,16 @@ export default function AmbassadorAI() {
     }
   };
   const quickActions = [{
-    text: "What are Xion programs?",
+    text: "What is Anoma Network?",
     icon: <Sparkles className="w-4 h-4" />
   }, {
-    text: "Content ideas for creators",
+    text: "Explain intent-centric architecture",
     icon: <FileText className="w-4 h-4" />
   }, {
-    text: "Upcoming events",
+    text: "Tell me about fractal scaling",
     icon: <Calendar className="w-4 h-4" />
   }, {
-    text: "Get personalized recommendations",
+    text: "What is the MASP?",
     icon: <Lightbulb className="w-4 h-4" />
   }];
   return <div className="min-h-screen bg-anoma-black text-anoma-white relative overflow-hidden bg-anoma-grid">

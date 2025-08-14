@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { GeminiService } from "@/lib/gemini";
 
 interface Message {
   id: string;
@@ -50,70 +51,19 @@ export const useGeminiChat = () => {
     }));
 
     try {
-      const history = state.messages.map(msg => ({
-        role: msg.role,
-        content: msg.content,
+      // Use Gemini API to generate response
+      const response = await GeminiService.chat(userText);
+      
+      // Update the assistant message with the response
+      setState(prev => ({
+        ...prev,
+        messages: prev.messages.map(msg =>
+          msg.id === assistantMessage.id
+            ? { ...msg, content: response }
+            : msg
+        ),
+        isLoading: false,
       }));
-
-      const response = await fetch("/api/chat", { // Updated to relative URL
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: userText,
-          history,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const reader = response.body?.getReader();
-      if (!reader) throw new Error("No response body");
-
-      const decoder = new TextDecoder();
-      let buffer = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n");
-        buffer = lines.pop() || "";
-
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            try {
-              const data = JSON.parse(line.slice(6));
-              
-              if (data.delta) {
-                setState(prev => ({
-                  ...prev,
-                  messages: prev.messages.map(msg =>
-                    msg.id === assistantMessage.id
-                      ? { ...msg, content: msg.content + data.delta }
-                      : msg
-                  ),
-                }));
-              }
-              
-              if (data.done) {
-                setState(prev => ({ ...prev, isLoading: false }));
-                return;
-              }
-              
-              if (data.error) {
-                throw new Error(data.error);
-              }
-            } catch (e) {
-              console.error("Error parsing SSE data:", e);
-            }
-          }
-        }
-      }
     } catch (error: any) {
       console.error("Chat error:", error);
       setState(prev => ({
